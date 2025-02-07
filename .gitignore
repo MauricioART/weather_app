@@ -1,0 +1,39 @@
+# Xcode
+.DS_Store
+.idea/
+xcuserdata/
+*.xcuserstate
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Build directories
+build/
+DerivedData/
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager
+.swiftpm/
+Packages/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Other
+*.swp
+*.log
+*.plist
+*.hmap
+*.xcscheme
+*.moved-aside
+*.h
+*.pch
+
+# Xcode 12 and later
+*.xcassets
+
