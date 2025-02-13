@@ -9,32 +9,37 @@ import SwiftUI
 
 struct WeatherInfo: View {
     
-    @State var isCelcius = false
+    var weather: Weather
+    
     var body: some View {
+        var date = Date(weather.location.localtime)
         VStack(alignment:.center){
-            Toggle(isOn: $isCelcius){
-            }
+//            Picker(selection: <#T##Binding<Hashable>#>, content: <#T##() -> View#>, label: <#T##() -> View#>)
             HStack(alignment: .center){
                 Spacer()
-                Text("⛅️").font(.system(size: 60))
-                //Image(systemName: "cloud").resizable()
-                  //  .frame(width: 40, height: 30)
+                AsyncImage(url: URL(string: weather.current.condition.icon)!) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 80, height: 80)
+                
                 Spacer()
-                Text("17" + " °").font(.system(size: 70)).bold()
+                Text("\(weather.current.temp_c)" + " °").font(.system(size: 70)).bold()
                 Spacer()
-                Text("UV: 1.0")
+                Text("UV: " + "\(weather.uv)")
                 Spacer()
             }
             HStack{
                 
-                Text("11/03/2025")
-                Text("23:01")
+                
+                Text("Time")
                 
             }
         }
     }
 }
 
-#Preview {
-    WeatherInfo()
-}
+

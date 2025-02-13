@@ -11,9 +11,17 @@ struct CountryList: View {
     
     var body: some View {
         NavigationSplitView {
-            List(countries){ country in
+            List(modelData.countries){ country in
                 NavigationLink {
-                    UbicationTab()
+                    modelData.getWeather(from: country.name){
+                        weather, error in
+                        if let weather {
+                            UbicationTab(weather: weather)
+                        }
+                        else{
+                            
+                        }
+                    }
                 } label: {
                     CountryRow(country: country)
                 }

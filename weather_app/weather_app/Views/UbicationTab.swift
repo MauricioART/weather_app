@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct UbicationTab: View {
+    var weather: Weather
     var body: some View {
         VStack(alignment: .center){
-            WeatherInfo()
+            WeatherInfo(weather: weather)
             MapView()
             Spacer()
             TabBarNavigation()

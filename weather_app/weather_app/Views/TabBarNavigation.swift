@@ -12,7 +12,7 @@ struct TabBarNavigation: View {
         HStack{
             Spacer()
             VStack{
-                Image(systemName: "pin")
+                Image(systemName: "mappin.and.ellipse")
                 Text("Ubicación").bold()
             }
             Spacer()
