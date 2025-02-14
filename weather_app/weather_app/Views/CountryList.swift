@@ -27,7 +27,7 @@ struct CountryList: View {
                 }
             }
         }detail: {
-            Text("Select a Landmark")
+            Text("Select a Conutry")
         }
     }
 }

@@ -9,14 +9,28 @@ import SwiftUI
 
 struct WeatherInfo: View {
     
-    var weather: Weather
-    
+    @StateObject var weather: Weather
+
     var body: some View {
-        var date = Date(weather.location.localtime)
+        
+        var temp: String{
+            if weather.isCelsius{
+                return "\(weather.current.temp_c)"
+            }else{
+                return "\(weather.current.temp_f)"
+            }
+        }
+
         VStack(alignment:.center){
-//            Picker(selection: <#T##Binding<Hashable>#>, content: <#T##() -> View#>, label: <#T##() -> View#>)
+            Picker("", selection: $weather.isCelsius) {
+                Text("C").tag(true)
+                Text("F").tag(false)
+            }.pickerStyle(SegmentedPickerStyle())
+
+
             HStack(alignment: .center){
                 Spacer()
+
                 AsyncImage(url: URL(string: weather.current.condition.icon)!) { image in
                     image
                         .resizable()
@@ -27,17 +41,16 @@ struct WeatherInfo: View {
                 .frame(width: 80, height: 80)
                 
                 Spacer()
-                Text("\(weather.current.temp_c)" + " °").font(.system(size: 70)).bold()
+                Text(temp + " °").font(.system(size: 70)).bold()
                 Spacer()
                 Text("UV: " + "\(weather.uv)")
                 Spacer()
             }
+
             HStack{
-                
-                
-                Text("Time")
-                
+                Text(weather.location.localtimeStr)
             }
+
         }
     }
 }

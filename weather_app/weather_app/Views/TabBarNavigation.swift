@@ -9,18 +9,18 @@ import SwiftUI
 
 struct TabBarNavigation: View {
     var body: some View {
-        HStack{
-            Spacer()
-            VStack{
-                Image(systemName: "mappin.and.ellipse")
-                Text("Ubicación").bold()
-            }
-            Spacer()
-            VStack{
-                Image(systemName: "star")
-                Text("Favoritos").bold()
-            }
-            Spacer()
+        TabView {
+            UbicationTab()
+                .tabItem {
+                    Image(systemName: "mappin.and.ellipse")
+                    Text("Ubicación")
+                }
+
+            FavoritesTab()
+                .tabItem {
+                    Image(systemName: "star")
+                    Text("Favoritos")
+                }
         }
         .frame(height: 90)
         .foregroundStyle(.gray)
