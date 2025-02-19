@@ -14,17 +14,12 @@ struct CountryRow: View {
         HStack(alignment:.center){
             Text(country.name).padding(.trailing)
             Spacer()
-            Image(country.enumValue!.rawValue).resizable().frame(width: 140, height: 90)    
+            Image(country.enumValue.rawValue).resizable().frame(width: 140, height: 90)    
         }.padding()
     }
 }
 
 #Preview {
     Group{
-        CountryRow(country: countries[0])
-        CountryRow(country: countries[2])
-        CountryRow(country: countries[3])
-        CountryRow(country: countries[4])
-        CountryRow(country: countries[5])
     }
 }

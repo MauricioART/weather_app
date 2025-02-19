@@ -1,42 +1,52 @@
 [
    {
       "id": 1,
-      "nombre": "London"
+      "nombre": "London",
+      "isFavorite": false
    },
    {
       "id": 2,
-      "nombre": "Canada"
+      "nombre": "Canada",
+      "isFavorite": false
    },
    {
       "id": 3,
-      "nombre": "Mexico"
+      "nombre": "Mexico",
+      "isFavorite": false
    },
    {
       "id": 4,
-      "nombre": "Brazil"
+      "nombre": "Brazil",
+      "isFavorite": false
    },
    {
       "id": 5,
-      "nombre": "Argentina"
+      "nombre": "Argentina",
+      "isFavorite": false
    },
    {
       "id": 6,
-      "nombre": "Spain"
+      "nombre": "Spain",
+      "isFavorite": false
    },
    {
       "id": 7,
-      "nombre": "France"
+      "nombre": "France",
+      "isFavorite": false
    },
    {
       "id": 8,
-      "nombre": "Germany"
+      "nombre": "Germany",
+      "isFavorite": false
    },
    {
       "id": 9,
-      "nombre": "Japan"
+      "nombre": "Japan",
+      "isFavorite": false
    },
    {
       "id": 10,
-      "nombre": "China"
+      "nombre": "China",
+      "isFavorite": false
    }
 ]

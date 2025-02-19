@@ -1,17 +1,12 @@
-//
-//  ModelData.swift
-//  weather_app
-//
-//  Created by Diplomado on 07/02/25.
-//
 
 import Foundation
 
-class DataManager {
+class DataManager :ObservableObject{
+    
     private let apiUrl = "http://api.weatherapi.com/v1/current.json"
     private let countryListFileName = "LocationList.json"
     
-    @Published private var countries: [Country] = []
+    @Published var countries: [Country] = []
     var favoriteCountries: [Country] {
         return countries.filter { $0.isFavorite == true }
     }
@@ -23,6 +18,36 @@ class DataManager {
         countries = loadCountriesData()
     }
 
+    private func getCountryFileURL() -> URL? {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(countryListFileName)")
+    }
+    
+    func getCountry(name : String) -> Country?{
+        return countries.first(where: {$0.name == name})
+    }
+    
+    private func copyCountryToDocumentsIfNeeded(){
+        let fileManager = FileManager.default
+        guard let bundleURL = Bundle.main.url(forResource: countryListFileName, withExtension: nil),
+              let documentURL = getCountryFileURL() else { return }
+        
+        if !fileManager.fileExists(atPath: documentURL.path) {
+            do {
+                try fileManager.copyItem(at: bundleURL, to: documentURL)
+            } catch {
+                print("Error copying \(countryListFileName): \(error)")
+            }
+        }
+    }
+    func loadCountriesData()->[Country]{
+        guard let fileURL = getCountryFileURL(),
+              let countryData = try? Data(contentsOf: fileURL),
+              let countryList = try? JSONDecoder().decode([Country].self, from: countryData) else {
+            print("Cannot load \(countryListFileName)")
+            return []
+        }
+        return countryList
+    }
     func fetchWeather(from country: String, completion: @escaping (Weather?, Error?) -> Void) {
         guard countries.contains(where: { $0.name == country }) else { return }
 

@@ -10,8 +10,9 @@ import MapKit
 
 
 struct MapView: View {
-    @StateObject var weather: Weather
-    @State var country: Country
+    @EnvironmentObject var dataManager: DataManager
+    var coordinates: CLLocationCoordinate2D
+    var country: Country
 
     var body: some View {
         Map(initialPosition: .region(region)).frame(width: 300, height: 300, alignment: .center)
@@ -19,13 +20,9 @@ struct MapView: View {
     
     private var region: MKCoordinateRegion {
         MKCoordinateRegion(
-            center: weather.location.coordinates,
-            span: country.enumValue!.span
+            center: coordinates,
+            span: country.enumValue.span
         )
     }
 }
 
-
-#Preview {
-    MapView()
-}

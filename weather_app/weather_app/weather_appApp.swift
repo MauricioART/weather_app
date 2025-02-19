@@ -9,16 +9,23 @@ import SwiftUI
 
 @main
 struct weather_appApp: App {
+    
     @StateObject private var dataManager = DataManager.shared
+    
+    
     @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
             CountryList()
-            .onChange(of: scenePhase) { newPhase in
-                    if newPhase == .background || newPhase == .inactive {
-                        dataManager.saveCountriesData()
-                    }
-                }
+                .environmentObject(dataManager)
+                
+//                .onChange(of: scenePhase) { newPhase in
+//                    if newPhase == .background || newPhase == .inactive {
+//                        dataManager.saveCountriesData()
+//                    }
+//                }
         }
     }
+    
+    
 }

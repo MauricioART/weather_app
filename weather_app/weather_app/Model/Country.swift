@@ -12,7 +12,7 @@ import MapKit
 struct Country: Codable, Hashable, Identifiable {
     var id: Int
     var name: String
-    var isFavorite: Bool?
+    var isFavorite: Bool
     var enumValue: CountryEnum {
         return CountryEnum(countryID: id)
     }
@@ -27,7 +27,7 @@ struct Country: Codable, Hashable, Identifiable {
 // Enum que representa los países con su span
 enum CountryEnum: String, CaseIterable {
     case london = "London"
-    case canada = "CanadáCa"
+    case canada = "CanadáCA"
     case mexico = "Mexico"
     case brazil = "Brazil"
     case argentina = "Argentina"

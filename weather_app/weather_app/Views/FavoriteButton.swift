@@ -9,19 +9,19 @@ import SwiftUI
 
 struct FavoriteButton: View {
     
-    @Binding var isSet: Bool
+    @Binding var isFavorite: Bool
     
     var body: some View {
         Button {
-            isSet.toggle()
+            isFavorite.toggle()
         } label: {
-            Label("Toggle Favorite", systemImage: isSet ? "star.fill" : "star")
+            Label("Toggle Favorite", systemImage: isFavorite ? "star.fill" : "star")
                 .labelStyle(.iconOnly)
-                .foregroundStyle(isSet ? .blue : .gray)
+                .foregroundStyle(isFavorite ? .blue : .gray)
         }
     }
 }
 
 #Preview {
-    FavoriteButton(isSet: .constant(true))
+    FavoriteButton(isFavorite: .constant(true))
 }

@@ -9,12 +9,13 @@ import SwiftUI
 
 struct WeatherInfo: View {
     
-    @StateObject var weather: Weather
-
+    @Binding var weather: Weather
+    @State var isCelcius: Bool = true
+    
     var body: some View {
         
         var temp: String{
-            if weather.isCelsius{
+            if isCelcius{
                 return "\(weather.current.temp_c)"
             }else{
                 return "\(weather.current.temp_f)"
@@ -22,7 +23,7 @@ struct WeatherInfo: View {
         }
 
         VStack(alignment:.center){
-            Picker("", selection: $weather.isCelsius) {
+            Picker("", selection: $isCelcius) {
                 Text("C").tag(true)
                 Text("F").tag(false)
             }.pickerStyle(SegmentedPickerStyle())
@@ -48,7 +49,7 @@ struct WeatherInfo: View {
             }
 
             HStack{
-                Text(weather.location.localtimeStr)
+                Text(weather.location.localtime_str)
             }
 
         }

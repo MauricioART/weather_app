@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct TabBarNavigation: View {
+    
+    @State var weather: Weather
+    
     var body: some View {
         TabView {
-            UbicationTab()
+            UbicationTab(weather: weather)
                 .tabItem {
                     Image(systemName: "mappin.and.ellipse")
                     Text("Ubicación")
@@ -26,8 +29,4 @@ struct TabBarNavigation: View {
         .foregroundStyle(.gray)
         .background(.gray.opacity(0.4))
     }
-}
-
-#Preview {
-    TabBarNavigation()
 }
